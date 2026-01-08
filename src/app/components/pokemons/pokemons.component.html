@@ -1,1 +1,24 @@
-<p>pokemons works!</p>
+<h1 class="text-3xl font-bold text-center mb-4">Les six premiers Pokémons</h1>
+<h3 class="text-xl text-gray-500 text-center uppercase mb-6">Dans l'ordre du pokédex</h3>
+
+<div class="grid grid-cols-3 gap-4">
+  @for (item of pokemons; track item) {
+    <div class="border rounded-lg shadow p-4 bg-white">
+      <h4>{{ item.name }}</h4>
+      <p>Catégorie : {{ item.category }}</p>
+      <p>Type : {{ item.type }}</p>
+
+      @if (item.height) {
+        <p>Taille : {{ item.height | number:'1.0-2':'fr-FR' }} m</p>
+      } @else {
+        <p>Taille : N/A</p>
+      }
+
+      @if (item.weight) {
+        <p>Poids : {{ item.weight | number:'1.0-2':'fr-FR' }} kg</p>
+      } @else {
+        <p>Poids : N/A</p>
+      }
+    </div>
+  }
+</div>

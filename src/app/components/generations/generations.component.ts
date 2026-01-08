@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './generations.component.css'
 })
 export class GenerationsComponent {
+  generations: string[] = ["Géneration I", "Géneration II", "Géneration III", "Géneration IV", "Géneration V", "Géneration VI", "Géneration VII"]
 
 }
