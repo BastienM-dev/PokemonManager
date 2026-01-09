@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
+import {PokemonService} from "../../services/pokemon.service";
 
 @Component({
   selector: 'app-generations',
@@ -8,6 +9,18 @@ import { Component } from '@angular/core';
   styleUrl: './generations.component.css'
 })
 export class GenerationsComponent {
-  generations: string[] = ["Géneration I", "Géneration II", "Géneration III", "Géneration IV", "Géneration V", "Géneration VI", "Géneration VII"]
+  generations: any[] = [];
 
+  constructor(
+    @Inject(PokemonService) private pokemonService: PokemonService
+  ) {
+    this.loadGenerations();
+  }
+
+  loadGenerations() {
+    this.pokemonService.getGenerations().subscribe(data => {
+      console.log(data);
+      this.generations = data.results;
+    });
+  }
 }

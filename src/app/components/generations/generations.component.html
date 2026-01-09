@@ -4,7 +4,7 @@
 <ul class="list-none text-center">
   @for (item of generations; track item) {
 
-    <li class="py-2 text-lg hover:bg-gray-100">{{ item }}</li>
+    <li class="py-2 text-lg hover:bg-gray-100 uppercase">{{ item.name.replace('-', ' ') }}</li>
 
   }
 </ul>

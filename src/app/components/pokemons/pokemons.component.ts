@@ -15,7 +15,27 @@ export class PokemonsComponent {
   pokemonCount: number = 0;
 
   constructor(private pokemonService: PokemonService) {
-    this.pokemons = this.pokemonService.getPokemons();
-    this.pokemonCount = this.pokemonService.getPokemonCount();
+    this.loadPokemons();
   }
+
+  loadPokemons(): void {
+    this.pokemonService.getPokemons().subscribe(data => {
+      console.log(data);
+      this.pokemons = data.results;
+      this.pokemonCount = data.count;
+      this.getPokemonDetails();
+    })
+  }
+
+  getPokemonDetails(): void {
+    this.pokemons.forEach(pokemon => {
+      this.pokemonService.getPokemonDetail(pokemon.url).subscribe(detail => {
+        console.log('détail reçu :', detail);
+        pokemon.height = detail.height;
+        pokemon.weight = detail.weight;
+        pokemon.sprites = detail.sprites;
+      })
+    })
+  }
+
 }

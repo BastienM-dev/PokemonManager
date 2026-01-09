@@ -6,17 +6,17 @@
   @for (item of pokemons; track item) {
     <div class="border rounded-lg shadow p-4 bg-white">
       <h4>{{ item.name }}</h4>
-      <p>Catégorie : {{ item.category }}</p>
-      <p>Type : {{ item.type }}</p>
-
+      @if (item.sprites?.front_default) {
+        <img [src]="item.sprites?.front_default" [alt]="item.name">
+      }
       @if (item.height) {
-        <p>Taille : {{ item.height | number:'1.0-2':'fr-FR' }} m</p>
+        <p>Taille : {{ item.height / 10 }} m</p>
       } @else {
         <p>Taille : N/A</p>
       }
 
       @if (item.weight) {
-        <p>Poids : {{ item.weight | number:'1.0-2':'fr-FR' }} kg</p>
+        <p>Poids : {{ item.weight / 10 }} kg</p>
       } @else {
         <p>Poids : N/A</p>
       }
